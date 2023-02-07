@@ -1,0 +1,38 @@
+name: Deploy Java App to VM
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IP_ADDRESS: 144.24.130.225
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Build with Maven
+      run: mvn package
+
+    - name: Deploy to VM
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.IP_ADDRESS }}
+        username: root
+        key: ${{ secrets.PRIVATE_KEY }}
+        script: |
+          sudo apt-get update
+          sudo apt-get install -y default-jdk
+          sudo mkdir -p /var/www/java-app
+          sudo cp target/<your-java-app>.jar /var/www/java-app/
+          sudo nohup java -jar /var/www/java-app/<your-java-app>.jar &
