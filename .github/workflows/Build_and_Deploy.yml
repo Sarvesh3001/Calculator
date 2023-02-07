@@ -3,7 +3,7 @@ name: Deploy Java App to VM
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   IP_ADDRESS: 144.24.130.225
