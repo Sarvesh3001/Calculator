@@ -34,5 +34,5 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y default-jdk
           sudo mkdir -p /var/www/java-app
-          sudo cp target/<your-java-app>.jar /var/www/java-app/
-          sudo nohup java -jar /var/www/java-app/<your-java-app>.jar &
+          sudo cp target/Calculator.jar /var/www/java-app/
+          sudo nohup java -jar /var/www/java-app/Calculator.jar &
