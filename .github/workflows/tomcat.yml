@@ -3,7 +3,7 @@ name: Deploy to Tomcat
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
